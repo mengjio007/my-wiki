@@ -17,11 +17,23 @@
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
+         <loc>https://mengjio007.github.io/my-wiki/database/redis/</loc>
+         <lastmod>2026-03-05</lastmod>
+    </url>
+    <url>
          <loc>https://mengjio007.github.io/my-wiki/database/mysql/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/database/redis/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/database/mysql/mvcc/</loc>
+         <lastmod>2026-03-05</lastmod>
+    </url>
+    <url>
+         <loc>https://mengjio007.github.io/my-wiki/database/mysql/physical-optimization/</loc>
+         <lastmod>2026-03-05</lastmod>
+    </url>
+    <url>
+         <loc>https://mengjio007.github.io/my-wiki/database/mysql/query-optimization/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
