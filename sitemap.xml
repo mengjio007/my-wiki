@@ -5,23 +5,23 @@
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/basic/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/architecture/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/basic/complexity/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/architecture/microservices/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/basic/sort/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/database/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/ds/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/database/mysql/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/ds/stack-queue/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/database/redis/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
@@ -33,11 +33,15 @@
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/math/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/other/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
     <url>
-         <loc>https://mengjio007.github.io/my-wiki/math/number-theory/</loc>
+         <loc>https://mengjio007.github.io/my-wiki/papers/</loc>
+         <lastmod>2026-03-05</lastmod>
+    </url>
+    <url>
+         <loc>https://mengjio007.github.io/my-wiki/papers/how-to-read/</loc>
          <lastmod>2026-03-05</lastmod>
     </url>
 </urlset>
