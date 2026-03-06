@@ -1,0 +1,96 @@
+# Project Information
+site_name: My Wiki
+site_description: 个人知识库，类似 OI Wiki 的知识整合站点
+site_author: My Wiki
+site_url: https://mengjio007.github.io/my-wiki/
+strict: false
+
+# Repository
+repo_name: 'mengjio007/my-wiki'
+repo_url: 'https://github.com/mengjio007/my-wiki'
+edit_uri: 'edit/main/docs/'
+
+# Copyright
+copyright: 'Copyright &copy; 2025 My Wiki'
+
+# Contents
+nav:
+  - 简介:
+    - 首页: index.md
+    - 关于本项目: intro/about.md
+    - 如何参与: intro/contribute.md
+  - 论文阅读:
+    - 简介: papers/index.md
+    - 阅读方法: papers/how-to-read.md
+    - 分布式事务: 
+      - 简介: papers/trans/index.md
+      - SAGA: papers/trans/saga.md
+    - 大数据三架马车:
+      - mapreduce: papers/bigdata/mapreduce.md
+      - google-file-system: papers/bigdata/google-file-system.md
+      - bigtable: papers/bigdata/bigtable.md
+  - 数据库与中间件:
+    - 简介: database/index.md
+    - MySQL:
+      - 概述: database/mysql/index.md
+      - 查询优化: database/mysql/query-optimization.md
+      - 物理优化: database/mysql/physical-optimization.md
+      - MVCC实现: database/mysql/mvcc.md
+    - Redis: database/redis.md
+  - 架构设计:
+    - 简介: architecture/index.md
+    - 微服务: architecture/microservices.md
+  - 其他:
+    - 简介: other/index.md
+
+# Theme - Material (类似 OI Wiki)
+theme:
+  name: material
+  language: 'zh'
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到浅色模式
+  features:
+    - content.action.edit
+    - navigation.tabs
+    - navigation.instant
+    - content.code.copy
+  icon:
+    logo: material/book-open-variant
+
+plugins:
+  - search
+
+# Markdown Extensions
+markdown_extensions:
+  - admonition
+  - def_list
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
