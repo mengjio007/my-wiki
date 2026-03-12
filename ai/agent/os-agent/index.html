@@ -79,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ai" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1454,6 +1459,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1575,9 +1582,23 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../finetune/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1591,7 +1612,79 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    微调
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../finetune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    简介
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../finetune/weitiao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM微调理论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1932,6 +2025,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -1956,9 +2051,98 @@
   
 
 
-  <h1>OS Agent</h1>
-
-
+<p>Browser Use
+https://github.com/browser-use/browser-use</p>
+<p>如何让AI“看懂”网页？拆解 Browser-Use 的三大核心技术模块 Browser Use 是什么</p>
+<p>Browser Use 是一种基于 AI 模型的浏览器自动化工具，基于 Playwright（浏览器自动化框架）
+Browser Use 是是一个开源的Python库，基于 LangChain 生态构建
+Playwright 是一个底层浏览器自动化驱动层，负责：</p>
+<p>启动、控制浏览器进程；
+执行 DOM 操作、点击、输入、截图；
+模拟网络请求、地理位置、时间；
+拦截 / 注入脚本；
+提供 API 接口给上层应用调用。 它相当于“浏览器的远程控制器”，用来跑测试、爬取数据、或者做自动化交互。</p>
+<h1 id="ai">初始化AI模型<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h1>
+<p>llm = ChatOpenAI(model="gpt-4o")</p>
+<h1 id="_1">定义任务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>task = "打开google，搜索'AI编程助手'，告诉我第一条结果的标题"</p>
+<h1 id="ai_1">创建AI代理<a class="headerlink" href="#ai_1" title="Permanent link">&para;</a></h1>
+<p>agent = Agent(task=task, llm=llm)</p>
+<h1 id="_2">运行任务<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>await agent.run()
+现代Python项目最佳实践：以 agentic tool browser-use为例</p>
+<p>class Agent(Generic[Context, AgentStructuredOutput]):
+  async def run(self, max_steps: int = 100) -&gt; AgentHistoryList:
+    for step in range(max_steps):
+      await self.step(step_info)
+  async def step(self, step_info: Optional[AgentStepInfo] = None) -&gt; None:
+    try:
+            # Phase 1: Prepare context and timing
+            browser_state_summary = await self._prepare_context(step_info)
+            # Phase 2: Get model output and execute actions
+            await self._get_next_action(browser_state_summary)
+            await self._execute_actions()
+            # Phase 3: Post-processing
+            await self._post_process()
+        except Exception as e:
+            # Handle ALL exceptions in one place
+            await self._handle_step_error(e)
+        finally:
+            await self._finalize(browser_state_summary)
+CDP
+Chrome DevTools Protocol(CDP)是 Chromium 浏览器调试工具的核心通信协议：它基于 JSON 格式，可以通过 WebSocket 实现客户端与浏览器内核之间的双向实时交互。基于 CDP 的开源产品有许多，其中最有名的应该是 Chrome Devtools Frontend，Puppeteer 和 Playwright 了。</p>
+<p>首先 CDP 协议是一个典型的 CS 架构，这里我们拿 Chrome Devtools 为例：</p>
+<p>Chrome Devtools：就是 Client，用来做调试数据的 UI 展示，方便用户阅读
+CDP：就是连接 Client-Server 的 Protocol，定义 API 的各种格式和细节
+Chromium/Chrome：就是 Server，用来产生各种数据
+CDP 协议的格式基于 JSON-RPC 2.0做了一些轻量的定制。首先是去掉了 JSON 结构体中的 “jsonrpc”: “2.0” 这种每次都要发送的冗余信息。CDP 其实可以分为两大类，然后下面有不同的 Domain 分类：</p>
+<p>Browser Protocol：浏览器相关的协议，之下的 Domain 都是平台相关的，比如说 Page，DOM，CSS，Network，都是和浏览器功能相关
+JavaScript Protocol：JS 引擎相关的协议，主要围绕 JS 引擎功能本身，比如说 Runtime，Debugger，HeapProfiler 等，都是比较纯粹的 JS 语言调试功能
+computer use
+https://github.com/e2b-dev/open-computer-use</p>
+<p>GUI Agent
+GUI Agent类模型的训练关键是否应该算在RL post-train里是个模糊的问题</p>
+<p>GUI Agent的数据收集困难，多样性的仿真环境构建困难。
+虽然主流应用数量不多，手机端App是频繁在更新的。
+用户在GUI上进行的任务也相对匮乏，，除了少数很复杂的网站和PC专业应用之外，大部分用户在大部分软件上只是在完成少数任务。虽然输入的信息是个性化的，但任务流程很固定，也并不多样。当然在国内各种臃肿的App上，我们可以探索它们的各种功能，产出很多task，但这些task对于用户主要场景上的成功率和泛化性很难说有多大提升。
+GUI Agent模型的跨应用泛化能力较差，海外的模型对于国内应用来说几乎不可用，因为这些模型没有针对于国内的网站和应用进行训练。国内的网站和应用的交互范式也与海外有差异。
+code sandbox
+起初OpenAI Code Interpreter 的出现， 需要一个安全的 Sandbox 来执行它生成的 Python 代码，仅仅为了弥补数学计算和逻辑执行的短板。随后， 随着 Context Engineering 的深入，Manus 和 Anthropic 的实践告诉我们，Sandbox 里的 File System 不再只是存临时文件的地方，它是 Agent 的memory，于是Sandbox 变成了 Agent Skills 和Memory 的载体。</p>
+<p>根据业界领先的context Engineering的经验：</p>
+<p>Cursor 的 “File-based Tools”： Cursor 采取了一种文档化方案，将工具的“说明书”全部文件化。当 Agent 需要使用某个能力时，它会先通过Retrieval找到对应的文档，阅读后生成代码
+Manus 的 “Context Offloading”： 在 Manus 的设计中，采用了层级化的工具架构。为了应对复杂的长流程任务，Agent 不再试图把所有中间状态都记在 Context Window 里，而是利用文件系统进行 Context Offloading（上下文卸载）。文件系统成为了 Agent 的外挂memory（不同于compact的有损压缩，Offloading是无损的）
+Anthropic 的 “Programming tool-using” 和skills：由agent自身编写代码实现tool-call相比于直接的tool-call能够节约大量context；同时agent skills本质上也是利用了file-system，对宝贵的context 进行节约的设计 显而易见，代码执行环境 (Code Execution) 和 可读写的文件系统 (File System) 已经超越了辅助工具的范畴，成为 Agent 组件中必要且不可或缺的部分。赋予 Agent “写代码”和“改文件”的能力，等同于赋予了它巨大的破坏力。因此，通过为 Agent 划定严格的 安全边界（Sandbox）——如网络隔离、文件系统隔离、进程隔离，便显得尤为重要。
+https://github.com/vndee/llm-sandbox</p>
+<p>https://mp.weixin.qq.com/s/JiRAuWAQ0RqNKlgtShaOvw</p>
+<p>从技术实现角度，现阶段的Sandbox有以下几种实现方式</p>
+<p>Local Sandbox-runtime。其原理利用 Linux 的 namespaces 和 cgroups 或 macOS 的 sandbox-exec 等操作系统原语直接限制进程权限， 如限制对配置路径的读/写访问，通过内置代理路由网络流量。如 Claude Code 中 执行 /sandbox 可在 中配置对应的权限：
+  {
+  "sandbox": {
+ "enabled": true,
+ "autoAllowBashIfSandboxed": true,
+ "excludedCommands": ["git", "docker"],
+ "network": {
+   "allowUnixSockets": ["/var/run/docker.sock"],
+   "allowLocalBinding": true
+ }
+  }
+本质上，Claude Code 的 sandbox runtime 是一个 OS 级别的“受限 Bash 运行环境”。</p>
+<p>Docker。默认的 Docker 是不安全的，在标准 Docker 中，容器只是宿主机上的一个进程。存在容器逃逸的问题： Linux 内核由数千万行代码组成，不可避免地存在 Bug（漏洞）。如果 Agent 发送了一个精心构造的“恶意系统调用”触发了内核漏洞（Kernel Panic 或 提权漏洞），它就能瞬间逃出容器，直接控制整台宿主机。因此必须进行安全加固。关键配置包括移除 Linux capabilities、只读文件系统、禁用网络接口等。
+MicroVM。AWS 在 2018 年开源了 Firecracker，专为 Serverless 和多租户容器设计: 砍掉了传统虚拟机（如 QEMU）中 90% 对 Agent 无用的功能，只保留了 CPU、内存、网络和最基础的块设备， 因而带来了惊人的性能，约 125 毫秒的冷启动时间，内存开销不到 5 MiB。
+从工程落地角度</p>
+<p>自托管 (Self-hosting) vs 云服务 (Managed Provider)
+Long running vs High-frequency (Lifecycle， persistence)。现阶段的sandbox的最主要用途，还是 code Interpreter，如执行agent生成的代码、数据分析等。对于大多数情况下，用完即焚，每次请求启动一个全新环境，任务结束立即销毁。同时通过预装环境的sandbox（常用数据分析库）也可节约响应时间。在如Agent skills所需要file-system的场景下，持久化则显得很重要。
+agent与sandbox
+越来越多的 Agent（智能体）需要一个工作空间：即一台可以运行代码、安装包和访问文件的计算机。沙箱提供了这一功能。将 Agent 与沙箱集成主要有两种架构模式：</p>
+<p>Agent 在沙箱内部运行，你通过网络与其通信。优点：镜像本地开发体验，Agent 与环境紧密耦合。
+更新需要重新构建容器镜像并重新部署
+安全风险。假设你想要一个拥有 bash 工具和一个可以进行网页搜索或网页抓取工具的 Agent，那么所有 LLM 生成的代码都可以进行无限制的网页抓取（这是一个巨大的安全风险）。
+沙箱作为工具。Agent 在本地/你的服务器上运行，远程调用沙箱进行执行。优点：易于更新 Agent 逻辑，API 密钥保留在沙箱之外，关注点分离更清晰。
+网络延迟是主要的缺点。每次执行调用都要跨越网络边界。对于包含许多小型执行操作的工作负载，这可能会累积起来。
+其它
+一句指令帮你操作手机，最新多模态手机助手Mobile-Agent来了！为了便于将文本描述的操作转化为屏幕上的操作，Mobile-Agent生成的操作必须在一个定义好的操作空间内。这个空间共有8个操作，分别是：打开App（App名字）；点击文本（文本内容）；点击图标（图标描述）；打字（文本内容）；上翻、下翻；返回上一页；退出App；停止。点击文本和点击图标设计了输入参数。</p>
+<p>在迭代开始之前，用户需要输入一个指令。我们根据指令生成整个流程的系统提示。在每次迭代开始时，Mobile-Agent会获取手机屏幕的截图，通过观察系统提示、操作历史和当前屏幕截图，输出下一步操作。如果Mobile-Agent输出的是结束，则停止迭代；否则，继续新的迭代。Mobile-Agent利用操作历史记录了解当前任务的进度，并根据系统提示对当前屏幕截图进行操作，从而实现迭代式自我规划流程。
+在迭代过程中，Mobile-Agent可能会遇到错误，导致无法完成指令。为了提高指令的成功率，我们引入了一种自我反思方法。这种方法将在两种情况下生效。第一种情况是生成了错误或无效的操作，导致进程卡住。当Mobile-Agent注意到某个操作后截图没有变化，或者截图显示了错误的页面时，它会尝试其他操作或修改当前操作的参数。第二种情况是忽略某些复杂指令的要求。当通过自我规划完成所有操作后，Mobile-Agent会分析操作、历史记录、当前截图和用户指令，以确定指令是否已完成。如果没有，它需要继续通过自我规划生成操作。</p>
 
 
 
