@@ -37,6 +37,21 @@ nav:
       - 物理优化: database/mysql/physical-optimization.md
       - MVCC实现: database/mysql/mvcc.md
     - Redis: database/redis.md
+  - AI-模型、微调、agent:
+    - 简介: ai/index.md
+    - LLM: ai/llm/index.md
+    - Agent:
+      - Agent演进: ai/agent/agent演进.md
+      - Multi-Agent: ai/agent/multi-agent.md
+      - 分布式Agent: ai/agent/agent-agent.md
+      - OS Agent: ai/agent/os-agent.md
+      - 上下文工程: ai/agent/agent-context.md
+      - MCP: ai/agent/mcp.md
+      - skill: ai/agent/skill.md
+    - 微调: ai/finetune/index.md
+    - 工具: ai/tools/index.md
+  - golang:
+    - 简介: golang/index.md
   - 架构设计:
     - 简介: architecture/index.md
     - 微服务: architecture/microservices.md

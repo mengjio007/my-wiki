@@ -1,0 +1,6 @@
+services:
+  my-wiki:
+    build: .
+    ports:
+      - "8080:80"
+
