@@ -37,7 +37,7 @@ nav:
       - 物理优化: database/mysql/physical-optimization.md
       - MVCC实现: database/mysql/mvcc.md
     - Redis: database/redis.md
-  - AI-模型、微调、agent:
+  - AI:
     - 简介: ai/index.md
     - LLM: ai/llm/index.md
     - Agent:
@@ -50,7 +50,7 @@ nav:
       - skill: ai/agent/skill.md
     - 微调: ai/finetune/index.md
     - 工具: ai/tools/index.md
-  - golang:
+  - Golang:
     - 简介: golang/index.md
   - 架构设计:
     - 简介: architecture/index.md
