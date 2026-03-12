@@ -48,7 +48,9 @@ nav:
       - 上下文工程: ai/agent/agent-context.md
       - MCP: ai/agent/mcp.md
       - skill: ai/agent/skill.md
-    - 微调: ai/finetune/index.md
+    - 微调: 
+      - 简介: ai/finetune/index.md
+      - LLM微调理论: ai/finetune/weitiao.md
     - 工具: ai/tools/index.md
   - Golang:
     - 简介: golang/index.md
